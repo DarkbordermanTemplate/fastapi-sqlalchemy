@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pre-commit = "==2.15.0"
+pytest = "==6.2.5"
+pytest-cov = "==3.0.0"
+pytest-mock = "==3.6.1"
+bandit = "==1.7.1"
+isort = "==5.10.1"
+black = "==21.7b0"
+flake8 = "==4.0.1"
+pylint = "==2.11.1"
+
+[packages]
+sqlalchemy = "==1.4.27"
+psycopg2-binary = "==2.9.2"
+loguru = "==0.5.3"
+uvicorn = {extras = ["standard"], version = "==0.12.2"}
+fastapi = "==0.70.0"
+requests = "==2.26.0"
+
+[requires]
+python_version = "3.8"
