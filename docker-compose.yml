@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  fastapi-sqlalchemy:
+    container_name: fastapi-sqlalchemy
+    build: .
+    image: fastapi-sqlalchemy:latest
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
