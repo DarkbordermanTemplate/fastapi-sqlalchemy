@@ -2,6 +2,7 @@
 A RESTful API service template built with fastapi.
 
 ![Integration](https://github.com/DarkbordermanTemplate/fastapi-sqlalchemy/workflows/Integration/badge.svg)
+![Build](https://github.com/DarkbordermanTemplate/fastapi-sqlalchemy/workflows/Build/badge.svg)
 
 ## Development
 

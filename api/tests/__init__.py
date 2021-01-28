@@ -5,6 +5,8 @@ from typing import Any, Union
 from fastapi.testclient import TestClient
 
 from app import APP
+from db import SESSION
+from models import Fruit
 
 
 CLIENT = TestClient(APP)
@@ -13,10 +15,10 @@ CLIENT = TestClient(APP)
 @dataclass
 class AssertRequest:
     """
-        API request assertion dataclass
+    API request assertion dataclass
 
-        headers (Union[dict, None]): The expected headers of request
-        payload (Union[dict, None]): The expceted payload(json or GET parameters) of request
+    headers (Union[dict, None]): The expected headers of request
+    payload (Union[dict, None]): The expceted payload(json or GET parameters) of request
     """
 
     headers: Union[dict, None]
@@ -26,10 +28,10 @@ class AssertRequest:
 @dataclass
 class AssertResponse:
     """
-        API response assertion dataclass
+    API response assertion dataclass
 
-        body (Any): The expected body of response
-        status_code (int): The expected status code of response
+    body (Any): The expected body of response
+    status_code (int): The expected status code of response
     """
 
     body: Any = "OK"
@@ -41,11 +43,17 @@ def assert_request(
 ):
     if method.upper() == "GET":
         resp = CLIENT.request(
-            method, f"{route}", headers=request.headers, params=request.payload,
+            method,
+            f"{route}",
+            headers=request.headers,
+            params=request.payload,
         )
     else:
         resp = CLIENT.request(
-            method, f"{route}", headers=request.headers, json=request.payload,
+            method,
+            f"{route}",
+            headers=request.headers,
+            json=request.payload,
         )
 
     try:
@@ -58,3 +66,7 @@ def assert_request(
     assert (
         resp.status_code == response.status_code
     ), f"{resp.status_code} does not match {response.status_code}"
+
+
+def clean_db():
+    SESSION.query(Fruit).delete()
